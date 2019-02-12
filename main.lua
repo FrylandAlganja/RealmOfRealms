@@ -1,40 +1,19 @@
-local tileWidth = 10
-local Tile = function (tileX, tileY)
-    local self = {}
-    self.x = tileWidth * tileX
-    self.y = tileWidth * tileY
+require 'game'
+require 'entities'
 
-	function self.draw ()
-	    love.graphics.setColor(0, 100, 100)
-	    love.graphics.rectangle("fill", self.x, self.y, 10, 10)
-	end
-
-    return self
-end
+love.window.setMode(800, 450)
 
 local map = (function ()
 	local self = {}
-	for y=1, 23 do
-		for x=1, 56 do
-			if x == 1 or x == 11 or x == 23 or x == 34 or x == 45 or x == 56 or y == 1 or y == 11 or y == 23 then
+	for y=1, 14 do
+		for x=1, 25 do
+			if x == 1 or x == 25 or y == 1 or y == 14 then
 				self[(y * 56) + x] = Tile(x - 1, y - 1)
 			end
 		end
 	end
 	return self
 	end)()
-
-local Player = function (startX, startY)
-	local self = {}
-	self.x = 0
-	self.y = 0
-	function self.draw ()
-	    love.graphics.setColor(255, 255, 0)
-	    love.graphics.rectangle("fill", self.x, self.y, 10, 10)
-	end
-
-	return self
-end
 
 local step = (function ()
 	msDelta = 0
@@ -77,4 +56,6 @@ function love.draw()
 		end
 	end
 	p.draw()
+
+	love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 0, 0)
 end
