@@ -1,21 +1,8 @@
 require 'game'
 require 'entities'
+require 'map'
 
 love.window.setMode(Game.windowWidth, Game.windowHeight)
-
-local map = (function ()
-	local self = {}
-	for y=1, 14 do
-		for x=1, 25 do
-			if x == 1 or x == 25 or y == 1 or y == 14 then
-				self[(y * 25) + x] = Tile(x - 1, y - 1)
-		    else
-		    	self[(y * 25) + x] = {active = false}
-			end
-		end
-	end
-	return self
-	end)()
 
 local step = (function ()
 	msDelta = 0
@@ -51,11 +38,11 @@ end
 
 function love.draw()
 	Game.camera.center(p)
-	for y=1,14 do
-		for x=1,25 do
-			if map[(y * 25) + x].active then
-				if Game.collides(map[(y * 25) + x], p) == false then
-				    map[(y * 25) + x].draw()
+	for y=1,Game.mapHeight do
+		for x=1,Game.mapWidth do
+			if Game.map[(y * Game.mapWidth) + x].active then
+				if Game.collides(Game.map[(y * Game.mapWidth) + x], p) == false then
+				    Game.map[(y * Game.mapWidth) + x].draw()
 				end
 			end
 		end

@@ -19,11 +19,16 @@ Entity = function (x, y)
 	return self
 end
 
-Tile = function (tileX, tileY)
+Tile = function (tileX, tileY, wall)
     local self = Entity(Game.cellWidth * tileX, Game.cellWidth * tileY)
+    self.wall = wall
 
 	function self.draw ()
-	    love.graphics.setColor(0, 100, 100)
+		if self.wall then
+	        love.graphics.setColor(0, 100, 100)
+	    else
+	    	love.graphics.setColor(50, 50, 50)
+	    end
 	    love.graphics.rectangle("fill", self.graphicX(), self.graphicY(), Game.cellWidth, Game.cellWidth)
 	end
 
