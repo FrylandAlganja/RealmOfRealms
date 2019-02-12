@@ -2,8 +2,11 @@ require 'game'
 
 Entity = function (x, y)
 	local self = {}
+	self.active = true
 	self.x = x
 	self.y = y
+	self.w = Game.cellWidth
+	self.h = Game.cellWidth
 
 	self.graphicX = function ()
 	    return self.x - Game.camera.x

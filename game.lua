@@ -17,5 +17,12 @@ Game = (function ()
     	return self
     end)()
 
+    self.collides = function (e1, e2)
+        return e1.x < e2.x + e2.w and
+               e2.x < e1.x + e1.w and
+               e1.y < e2.y + e2.h and
+               e2.y < e1.y + e1.h
+    end
+
     return self
 end)()
