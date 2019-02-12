@@ -5,6 +5,14 @@ Entity = function (x, y)
 	self.x = x
 	self.y = y
 
+	self.graphicX = function ()
+	    return self.x - Game.camera.x
+	end
+
+    self.graphicY = function ()
+    	return self.y - Game.camera.y
+    end
+
 	return self
 end
 
@@ -13,7 +21,7 @@ Tile = function (tileX, tileY)
 
 	function self.draw ()
 	    love.graphics.setColor(0, 100, 100)
-	    love.graphics.rectangle("fill", self.x, self.y, Game.cellWidth, Game.cellWidth)
+	    love.graphics.rectangle("fill", self.graphicX(), self.graphicY(), Game.cellWidth, Game.cellWidth)
 	end
 
     return self
@@ -23,7 +31,7 @@ Player = function (startX, startY)
 	local self = Entity(startX, startY)
 	function self.draw ()
 	    love.graphics.setColor(255, 255, 0)
-	    love.graphics.rectangle("fill", self.x, self.y, Game.cellWidth, Game.cellWidth)
+	    love.graphics.rectangle("fill", self.graphicX(), self.graphicY(), Game.cellWidth, Game.cellWidth)
 	end
 
 	return self

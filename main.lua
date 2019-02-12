@@ -1,7 +1,7 @@
 require 'game'
 require 'entities'
 
-love.window.setMode(800, 450)
+love.window.setMode(Game.windowWidth, Game.windowHeight)
 
 local map = (function ()
 	local self = {}
@@ -48,6 +48,7 @@ function love.update ()
 end
 
 function love.draw()
+	Game.camera.center(p)
 	for y=1,23 do
 		for x=1,56 do
 			if map[(y * 56) + x] then
