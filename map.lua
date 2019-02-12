@@ -47,16 +47,47 @@ Game.map = (function ()
         end
     end
 
-    for i=1,10 do
-		local dx = math.floor(math.random() * 10) - 5
-		local dy = math.floor(math.random() * 10) - 5
-		local chance = math.random()
-		if (chance > .2) then
-		    createCircle(40 + dx, 40 + dy, 10)
-		else
-			createSquare(40 + dx, 40 + dy, 10)
-		end
+    local digTunnel = function (p1, p2)
+        while (p1.x ~= p2.x or p1.y ~= p2.y) do
+        	if p1.x < p2.x then
+        		p1.x = p1.x + 1
+        	elseif p1.x > p2.x then
+        		p1.x = p1.x - 1
+        	end
 
+        	if p1.y < p2.y then
+        		p1.y = p1.y + 1
+            elseif p1.y > p2.y then
+                p1.y = p1.y - 1
+            end
+            createSquare(p1.x, p1.y, 1)
+        end
+    end
+
+    local digRoom = function (centerX, centerY)
+        createCircle(centerX, centerY, 5)
+    	for i=1,5 do
+			local dx = math.floor(math.random() * 10) - 5
+			local dy = math.floor(math.random() * 10) - 5
+			local chance = math.random()
+			if (chance > .2) then
+			    createCircle(centerX + dx, centerY + dy, 5)
+			else
+				createSquare(centerX + dx, centerY + dy, 5)
+			end
+		end
+    end
+
+    local roomCenters = {}
+    for i=1,10 do
+    	local centerX = math.floor(math.random() * 58) + 11
+    	local centerY = math.floor(math.random() * 58) + 11
+    	roomCenters[i] = {x = centerX, y = centerY}
+        digRoom(centerX, centerY)
+    end
+
+    for i=1,9 do
+    	digTunnel(roomCenters[i], roomCenters[i + 1])
     end
 
 	for y=1, Game.mapHeight do
