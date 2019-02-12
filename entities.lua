@@ -20,7 +20,7 @@ Entity = function (x, y)
 end
 
 Tile = function (tileX, tileY, wall)
-    local self = Entity(Game.cellWidth * tileX, Game.cellWidth * tileY)
+    local self = Entity(Game.cellWidth * (tileX - 1), Game.cellWidth * (tileY - 1))
     self.wall = wall
 
 	function self.draw ()

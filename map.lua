@@ -3,11 +3,27 @@ Game.mapHeight = 80
 
 Game.map = (function ()
 	local self = {}
+	self.getVacantTile = function ()
+	    local tileFound = false
+	    local tile = {}
+	    while tileFound == false do
+	    	local x = math.floor(math.random() * 80)
+	    	local y = math.floor(math.random() * 80)
+	    	if (self[(y * Game.mapWidth) + x].active) then
+	    		if (self[(y * Game.mapWidth) + x].wall == false) then
+	    			tile = {x = x, y = y}
+	    			tileFound = true
+	    		end
+	    	end
+	    end
+	    return tile
+	end
+
 	local createCircle = function (centerX, centerY, radius)
 	    for y=centerY - radius, centerY + radius do
 	    	for x=centerX - radius, centerX + radius do
 	    		if math.sqrt((x - centerX)^2 + (y - centerY)^2) < radius then
-                    self[(y * Game.mapWidth) + x] = Tile(x - 1, y - 1, false)
+                    self[(y * Game.mapWidth) + x] = Tile(x, y, false)
                 end
             end
         end
@@ -16,7 +32,7 @@ Game.map = (function ()
     local createSquare = function (centerX, centerY, halfWidth)
         for y = centerY - halfWidth, centerY + halfWidth do
         	for x = centerX - halfWidth, centerX + halfWidth do
-        		self[(y * Game.mapWidth) + x] = Tile(x - 1, y - 1, false)
+        		self[(y * Game.mapWidth) + x] = Tile(x, y, false)
         	end
         end
     end
@@ -36,7 +52,7 @@ Game.map = (function ()
 	        				   dx <= Game.mapWidth and dy <= Game.mapHeight then
 	        				    if self[(dy * Game.mapWidth) + dx].active then
 	        				    	if self[(dy * Game.mapWidth) + dx].wall == false then
-	        				    	    self[(y * Game.mapWidth) + x] = Tile(x - 1, y - 1, true)
+	        				    	    self[(y * Game.mapWidth) + x] = Tile(x, y, true)
 	        				        end
 	        				    end
 	        				end

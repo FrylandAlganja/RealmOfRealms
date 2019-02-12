@@ -17,7 +17,8 @@ local step = (function ()
 	end)
 end)()
 
-local p = Player(40 * Game.cellWidth, 40 * Game.cellWidth)
+local startPosition = Game.map.getVacantTile()
+local p = Player(startPosition.x * Game.cellWidth, startPosition.y * Game.cellWidth)
 
 function love.update ()
 	if step() then
