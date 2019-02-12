@@ -13,6 +13,15 @@ Game.map = (function ()
         end
     end
 
+    local createSquare = function (centerX, centerY, halfWidth)
+        for y = centerY - halfWidth, centerY + halfWidth do
+        	for x = centerX - halfWidth, centerX + halfWidth do
+        		self[(y * Game.mapWidth) + x] = Tile(x - 1, y - 1, false)
+        	end
+        end
+    end
+
+
     local wallUp = function ()
         for y=1, Game.mapHeight do
         	for x=1, Game.mapWidth do
@@ -38,8 +47,18 @@ Game.map = (function ()
         end
     end
 
-    
-    createCircle(40, 40, 20)
+    for i=1,10 do
+		local dx = math.floor(math.random() * 10) - 5
+		local dy = math.floor(math.random() * 10) - 5
+		local chance = math.random()
+		if (chance > .2) then
+		    createCircle(40 + dx, 40 + dy, 10)
+		else
+			createSquare(40 + dx, 40 + dy, 10)
+		end
+
+    end
+
 	for y=1, Game.mapHeight do
 		for x=1, Game.mapWidth do
 			if self[(y * Game.mapWidth) + x] == nil then
@@ -49,5 +68,5 @@ Game.map = (function ()
 	end
 	wallUp()
 	return self
-	end)()
+end)()
 

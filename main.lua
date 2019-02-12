@@ -17,7 +17,7 @@ local step = (function ()
 	end)
 end)()
 
-local p = Player(0, 0)
+local p = Player(40 * Game.cellWidth, 40 * Game.cellWidth)
 
 function love.update ()
 	if step() then
