@@ -37,6 +37,8 @@ end
 
 Player = function (startX, startY)
 	local self = Entity(startX, startY)
+	self.vx = 0
+	self.vy = 0
 	function self.draw ()
 	    love.graphics.setColor(255, 255, 0)
 	    love.graphics.rectangle("fill", self.graphicX(), self.graphicY(), Game.cellWidth, Game.cellWidth)
