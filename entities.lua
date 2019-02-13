@@ -8,6 +8,7 @@ Game.Entity = function (x, y)
 	self.w = Game.cellWidth
 	self.h = Game.cellWidth
 
+
 	self.graphicX = function ()
 	    return self.x - Game.camera.x
 	end

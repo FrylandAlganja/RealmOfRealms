@@ -2,7 +2,7 @@ Game = (function ()
     local self = {}
     self.seed = math.randomseed(os.time())
 
-    self.cellWidth = 8
+    self.cellWidth = 16
     self.entities = {}
     self.windowWidth = 800
     self.windowHeight = 450

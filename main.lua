@@ -42,6 +42,7 @@ function love.update ()
 			for y = 1, Game.mapHeight do
 				for x = 1, Game.mapWidth do
 					local tile = Game.map[(y * Game.mapWidth) + x]
+
 					if tile.active and tile.wall and Game.collides(tile, p) then
 						while Game.collides(tile, p) do
 							local xDiff = math.abs(p.x - tile.x)
@@ -62,6 +63,7 @@ function love.update ()
 			for y = 1, Game.mapHeight do
 				for x = 1, Game.mapWidth do
 					local tile = Game.map[(y * Game.mapWidth) + x]
+
 					if tile.active and tile.wall and Game.collides(tile, p) then
 						while Game.collides(tile, p) do
 							if (p.vy > 0) then
@@ -84,7 +86,9 @@ function love.draw()
 	for y=1,Game.mapHeight do
 		for x=1,Game.mapWidth do
 			local tile = Game.map[(y * Game.mapWidth) + x]
-			if tile.active then tile.draw() end
+		    if tile.active then
+	     		tile.draw()
+			end
 		end
 	end
 	p.draw()
