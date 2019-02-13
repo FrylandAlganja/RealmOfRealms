@@ -2,10 +2,11 @@ Game = (function ()
     local self = {}
     self.seed = math.randomseed(os.time())
 
-    self.cellWidth = 16
+    self.cellWidth = 8
     self.entities = {}
     self.windowWidth = 800
     self.windowHeight = 450
+    self.map = {}
 
     self.camera = (function ()
     	self.x = 0

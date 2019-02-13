@@ -1,6 +1,6 @@
 require 'game'
-require 'entities'
 require 'map'
+require 'entities'
 
 love.window.setMode(Game.windowWidth, Game.windowHeight)
 
@@ -18,7 +18,7 @@ local step = (function ()
 end)()
 
 local startPosition = Game.map.getVacantTile()
-local p = Player(startPosition.x * Game.cellWidth, startPosition.y * Game.cellWidth)
+local p = Game.Player((startPosition.x - 1) * Game.cellWidth, (startPosition.y - 1) * Game.cellWidth)
 
 function love.update ()
 	if step() then
@@ -88,6 +88,8 @@ function love.draw()
 		end
 	end
 	p.draw()
+
+	--love.graphics.draw(Game.map.minimap)
 
 	love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 0, 0)
 end

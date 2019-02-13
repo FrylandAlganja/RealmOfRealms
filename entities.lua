@@ -1,6 +1,6 @@
 require 'game'
 
-Entity = function (x, y)
+Game.Entity = function (x, y)
 	local self = {}
 	self.active = true
 	self.x = x
@@ -19,8 +19,8 @@ Entity = function (x, y)
 	return self
 end
 
-Tile = function (tileX, tileY, wall)
-    local self = Entity(Game.cellWidth * (tileX - 1), Game.cellWidth * (tileY - 1))
+Game.Tile = function (tileX, tileY, wall)
+    local self = Game.Entity(Game.cellWidth * (tileX - 1), Game.cellWidth * (tileY - 1))
     self.wall = wall
 
 	function self.draw ()
@@ -35,8 +35,8 @@ Tile = function (tileX, tileY, wall)
     return self
 end
 
-Player = function (startX, startY)
-	local self = Entity(startX, startY)
+Game.Player = function (startX, startY)
+	local self = Game.Entity(startX, startY)
 	self.vx = 0
 	self.vy = 0
 	function self.draw ()
