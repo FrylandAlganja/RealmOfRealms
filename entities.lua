@@ -26,9 +26,9 @@ Game.Tile = function (tileX, tileY, wall)
 
 	function self.draw ()
 		if self.wall then
-	        love.graphics.setColor(0, 100, 100)
+	        love.graphics.setColor(0, 0.2, 0.2)
 	    else
-	    	love.graphics.setColor(50, 50, 50)
+	    	love.graphics.setColor(0.5, 0.5, 0.5)
 	    end
 	    love.graphics.rectangle("fill", self.graphicX(), self.graphicY(), Game.cellWidth, Game.cellWidth)
 	end
