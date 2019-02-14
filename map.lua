@@ -98,11 +98,11 @@ Game.map = (function ()
 			local dx = math.floor(math.random() * 10) - 5
 			local dy = math.floor(math.random() * 10) - 5
 			local chance = math.random()
-			if (chance > .2) then
-			    createCircle(centerX + dx, centerY + dy, 5)
-			else
+			--if (chance > .2) then
+			    --createCircle(centerX + dx, centerY + dy, 5)
+			--else
 				createSquare(centerX + dx, centerY + dy, 5)
-			end
+			--end
 		end
     end
 
